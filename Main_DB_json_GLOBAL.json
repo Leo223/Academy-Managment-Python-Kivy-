@@ -1,0 +1,22 @@
+{
+    "2017": {
+        "January": {
+            "Horarios": {
+                "DT": {}, 
+                "Mate": {}, 
+                "Fisica": {}
+            }, 
+            "Asignaturas": {
+                "DT": {}, 
+                "Mate": {
+                    "Peter": {
+                        "Observaciones": {}, 
+                        "Ficha": {}, 
+                        "Registro de horas": {}
+                    }
+                }, 
+                "Fisica": {}
+            }
+        }
+    }
+}

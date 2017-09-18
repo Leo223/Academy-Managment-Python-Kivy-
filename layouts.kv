@@ -1,0 +1,703 @@
+#:kivy 1.9
+# File name: layouts.kv
+# -*- coding: utf-8 -*-
+#########################################################
+
+<BtnHoras>
+    text: '1.5 h'
+    font_size: 26
+    on_press: app.Cambiar_Horas(root.NombreAlumno)
+
+<SelectHoras>
+    loop:True
+    Label:
+        text: root.Hora_Inical
+    Label:
+        text: '1.5h'
+    Label:
+        text: '2h'
+    Label:
+        text: '2.5h'
+    Label:
+        text: '3h'
+    Label:
+        text: '1h'
+
+<Desplegable>
+    size_hint: (None, None)
+    size: (500, 250)
+    #for Android
+#    size: (500,250)
+    #######
+    pos_hint: {'center_x': root.Posi[0], 'y': root.Posi[1]}
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: root.Nombre_pupil
+        BoxLayout:
+            orientation:'horizontal'
+            BubbleButton:
+                text: 'Editar'
+        #        font_size: 50
+                on_press:app.PopUp_Editar_Alumno(root.Posi[2])
+            BubbleButton:
+                text: 'Ficha'
+        #        font_size: 50
+                on_press:app.Switch_to_Ficha_Alumno(root.Nombre_pupil)
+
+
+<Calendario>
+    week:_week
+    days:_days
+    editar:_editar
+    crear:_crear
+    GridLayout:
+        cols:1
+        orientation: 'vertical'
+        GridLayout:
+            rows:2
+            orientation: 'vertical'
+            size_hint_y:0.2
+#            spacing:100
+            Label:
+                text: "[color=FF9900][i][b]"+root.mesName+"[color=FF9900][/i][/b]"+10*' '+ "[color=#3333ff]"+root.Nm_Asignatura+"[color=#3333ff]"
+#                font_size:100
+                markup:True
+            BoxLayout:
+                orientation:'horizontal'
+                Button:
+#                    image: 'prev.png'
+                    text: '<'
+                    font_size:80
+                    size_hint_x: None
+                    width: self.height
+                    on_release: app.Switch_to_Main_screen()
+                ToggleButton:
+                    id:_editar
+                    text:'Editar\nAsistencia'
+                    font_size: 40
+                    size_hint_x: 0.25
+                    width: self.height
+                    on_release: app.Editar_Asistencia()
+
+                ToggleButton:
+                    id:_crear
+                    text:'Crear\nAsistencia'
+                    font_size: 40
+                    size_hint_x: 0.25
+                    width: self.height
+                    on_release: app.Asistencia_puntual()
+                ####
+                #### Poner aqui los botones exta
+                ####
+                Label:
+                    text: "[i][b][sup]Alumno:[/sup][/i][/b]"+" "*5+"[color=ff3333][i][b]"+root.Nm_alumno+"[/i][/b][/color]"
+#                    font_size: 50
+                    markup:True
+
+        BoxLayout:
+            id:_week
+            size_hint_y:0.1
+            orientation:'horizontal'
+
+        GridLayout:
+            orientation:'horizontal'
+            id:_days
+            cols:7
+
+<Horarios>
+    rango:_rango
+    diasSemana:_diasSemana
+    asignatura:_asignatura
+    mananas:_mananas
+    tardes:_tardes
+    box_mananas:_box_mananas
+    box_tardes:_box_tardes
+    #
+    mananaInicioHora:_mananaInicioHora
+    mananaInicioMinuto:_mananaInicioMinuto
+    mananaFinHora:_mananaFinHora
+    mananaFinMinuto:_mananaFinMinuto
+    #
+    tardeInicioHora:_tardeInicioHora
+    tardeInicioMinuto:_tardeInicioMinuto
+    tardeFinHora:_tardeFinHora
+    tardeFinMinuto:_tardeFinMinuto
+
+#    switch:_switch
+    BoxLayout:
+        orientation:'vertical'
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint_y: 0.3
+            Label:
+                text: '[b][i]HORARIO[/b][/i]'
+                markup: True
+            Button:
+                size_hint: None,None
+                text: 'Main\nScreen'
+                on_press: app.Switch_to_Main_screen()
+
+#            Switch:
+#                id: _switch
+#                active: False
+#                on_active:app.Activar_Horario_HORARIOS(*args)
+
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint_y: 0.2
+            Label:
+                text: 'Asignatura:'
+            Spinner:
+                id:_asignatura
+#                size_hint: None, 1
+                text: '-----'
+                background_normal: 'atlas://data/images/defaulttheme/action_group'
+                values:tuple(root.Lista_Asignaturas)
+
+        GridLayout:
+            id:_diasSemana
+            size_hint_y:  0.3
+            rows:2
+            cols:7
+            Label:
+                text: 'Lunes'
+            Label:
+                text: 'Martes'
+            Label:
+                text: 'Miercoles'
+            Label:
+                text: 'Jueves'
+            Label:
+                text: 'Viernes'
+            Label:
+                text: 'Sabado'
+            Label:
+                text: 'Domingo'
+            CheckBox:
+                text:'Lunes'
+            CheckBox:
+                text:'Martes'
+            CheckBox:
+                text:'Miercoles'
+            CheckBox:
+                text:'Jueves'
+            CheckBox:
+                text:'Viernes'
+            CheckBox:
+                text:'Sabado'
+            CheckBox:
+                text:'Domingo'
+
+        BoxLayout:
+            id:_rango
+            orientation:'horizontal'
+            size_hint_y: 0.5
+            BoxLayout:
+                id:_box_mananas
+                orientation:'vertical'
+                ToggleButton:
+                    id:_mananas
+                    text: 'Mornings'
+                    on_release: app.Set_mananas()
+                BoxLayout:
+                    disabled:True
+                    orientation: 'horizontal'
+                    Carousel:
+                        id:_mananaInicioHora
+                        direction:'top'
+                        Label:
+                            text:'9'
+                        Label:
+                            text:'10'
+                        Label:
+                            text:'11'
+                        Label:
+                            text:'12'
+                        Label:
+                            text:'13'
+                        Label:
+                            text:'14'
+                        Label:
+                            text:'15'
+                        Label:
+                            text:'16'
+                    Label:
+                        text: ':'
+                    Carousel:
+                        id:_mananaInicioMinuto
+                        direction:'top'
+                        Label:
+                            text:'00'
+                        Label:
+                            text:'30'
+                BoxLayout:
+                    disabled:True
+                    orientation: 'horizontal'
+                    Carousel:
+                        id:_mananaFinHora
+                        direction:'top'
+                        Label:
+                            text:'9'
+                        Label:
+                            text:'10'
+                        Label:
+                            text:'11'
+                        Label:
+                            text:'12'
+                        Label:
+                            text:'13'
+                        Label:
+                            text:'14'
+                        Label:
+                            text:'15'
+                        Label:
+                            text:'16'
+                    Label:
+                        text: ':'
+                    Carousel:
+                        id:_mananaFinMinuto
+                        direction:'top'
+                        Label:
+                            text:'00'
+                        Label:
+                            text:'30'
+
+            BoxLayout:
+                id:_box_tardes
+                orientation:'vertical'
+                ToggleButton:
+                    id:_tardes
+#                    size_hint_x: 0.3
+                    text: 'Tardes'
+                    on_release: app.Set_tardes()
+                BoxLayout:
+                    disabled:True
+                    orientation: 'horizontal'
+                    Carousel:
+                        id:_tardeInicioHora
+                        direction:'top'
+                        Label:
+                            text:'16'
+                        Label:
+                            text:'17'
+                        Label:
+                            text:'18'
+                        Label:
+                            text:'19'
+                        Label:
+                            text:'20'
+                        Label:
+                            text:'21'
+                        Label:
+                            text:'22'
+                    Label:
+                        text: ':'
+                    Carousel:
+                        direction:'top'
+                        id:_tardeInicioMinuto
+                        Label:
+                            text:'00'
+                        Label:
+                            text:'30'
+                BoxLayout:
+                    disabled:True
+                    orientation: 'horizontal'
+                    Carousel:
+                        id:_tardeFinHora
+                        direction:'top'
+                        Label:
+                            text:'16'
+                        Label:
+                            text:'17'
+                        Label:
+                            text:'18'
+                        Label:
+                            text:'19'
+                        Label:
+                            text:'20'
+                        Label:
+                            text:'21'
+                        Label:
+                            text:'22'
+                    Label:
+                        text: ':'
+                    Carousel:
+                        id:_tardeFinMinuto
+                        direction:'top'
+                        Label:
+                            text:'00'
+                        Label:
+                            text:'30'
+        BoxLayout:
+            Button:
+                size_hint_y:0.2
+                pos_hint:{'x':0,'bottom':1}
+                text:'SAVE'
+                on_release:app.Definir_horarios()
+
+
+<Datos_Alumno>
+    nombre_FICHA:_nombre_FICHA
+    editar_nombre_FICHA:_editar_nombre_FICHA
+    box_nombre:_box_nombre
+    box_NumeroFicha:_box_NumeroFicha
+    numero_FICHA:_numero_FICHA
+    horas_Mes:_horas_Mes
+    set_num_FICHA:_set_num_FICHA
+    set_horas_Mes:_set_horas_Mes
+    dias_sueltos:_dias_sueltos
+    set_dia_suelto:_set_dia_suelto
+    box_dias_sueltos:_box_dias_sueltos
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y:  0.3
+            orientation: 'horizontal'
+#            size_hint_y: 0.05
+            Label:
+                size_hint: None,None
+                size_hint_x: 0.6
+#                font_size: 50
+                text: '[i][b]FICHA ALUMNO[/b][/i]'
+                markup: True
+            Button:
+                size_hint: None,None
+                text: 'Main\nScreen'
+                on_release: app.Switch_to_Main_screen()
+        BoxLayout:
+            size_hint_y:  0.1
+            orientation: 'horizontal'
+            Label:
+                size_hint_x: 0.3
+                text: "[b] Asignatura: [/b]"
+                markup: True
+            Label:
+                text: app.ppal_window.tabObject.current_tab.text
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint_y: 0.1
+            Label:
+                size_hint_x: 0.3
+                text: '[b]Nombre:[/b]'
+                markup: True
+            BoxLayout:
+                id:_box_nombre
+                Label:
+                    id:_nombre_FICHA
+                    text: root.Nombre_Alumno
+                ToggleButton:
+                    id:_editar_nombre_FICHA
+                    text: 'Edit'
+                    size_hint_x:0.3
+                    on_press:app.Editar_Nombre_FICHA(root.Nombre_Alumno)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint_y: 0.1
+            Label:
+                size_hint_x: 0.3
+                text: '[b]Numero de ficha:[/b]'
+                markup: True
+            BoxLayout:
+                id:_box_NumeroFicha
+                Label:
+                    id:_numero_FICHA
+                    text: root.Numero_FICHA
+                ToggleButton:
+                    id:_set_num_FICHA
+                    text: 'Edit'
+                    size_hint_x:0.3
+                    on_press:app.Numero_FICHA(root.Nombre_Alumno)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint_y: 0.1
+            Label:
+                size_hint_x: 0.3
+                text: '[b]Horas al mes:[/b]'
+                markup: True
+            BoxLayout:
+#                id:_box_horasMes
+                Spinner:
+                    id:_horas_Mes
+                    disabled:True
+                    text: root.Pagado
+                    values:('Mes Completo','2h/semana','1.5h/semana','1h/semana')
+                ToggleButton:
+                    id:_set_horas_Mes
+                    text: 'Edit'
+                    size_hint_x:0.3
+                    on_press:app.Mes_Pagado()
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint_y: 0.1
+            Label:
+                size_hint_x: 0.3
+                text: '[b]Dia que viene:[/b]'
+                markup: True
+            BoxLayout:
+                id:_box_dias_sueltos
+                disabled:True
+                Spinner:
+                    id:_dias_sueltos
+                    text: root.Dia_suelto
+                    values:('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado')
+                ToggleButton:
+                    id:_set_dia_suelto
+                    text: 'Edit'
+                    size_hint_x:0.3
+                    on_press:app.Set_dia_suelto()
+
+
+
+#                Spinner:
+#                    size_hint: None, None
+#    #                width: '108sp'
+#                    text: 'Horario'
+#    #                background_normal: 'atlas://data/images/defaulttheme/action_group'
+#                    values:('9.00-18.00','18.00-19.30','19.30-21.00')
+        BoxLayout:
+
+
+
+<MainWindow>:
+    tabObject:_Tab
+    checkin:_checkIN
+    checkout:_checkOUT
+    pupilBt:_pupil
+    current_subject:_current_subject
+    mananas:_mananas
+    tardes:_tardes
+    franjaHoraria:_franjaHoraria
+    box_Manana:_box_Manana
+    box_Tardes:_box_Tardes
+    contador_asistencia:_contador_asistencia
+    alumnos_totales:_alumnos_totales
+
+    BoxLayout:
+        cols: 3
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 0.2
+            spacing: 3
+            padding: 3
+            Label:
+                text:'[color=#FF9900][b]Academia\nMagistral[/b][/color]'
+#                text: '[color=#FF9900][b]AtoS[/b][/color]'
+                size_hint_x: 0.3
+                valign: "bottom"
+                halign: "center"
+#                font_size: 15
+                markup: True
+            Label:
+                text:'[color=#FF9900][i]'+root.fecha_ahora+'[/color][/i]'
+                valign: "bottom"
+                halign: "center"
+#                font_size: 15
+                markup: True
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.5, 0.7
+                BoxLayout:
+                    Button:
+                        text: '<'
+                        size_hint: 0.15, 1
+#                        pos_hint: {'center_x':0.5,'center_y':0.5}
+                        font_size:50
+                        width: '108sp'
+                        on_release: app.Subject_Left()
+                    Button:
+                        text: '>'
+                        size_hint: 0.15, 1
+#                        pos_hint: {'center_x':0.5,'center_y':0.5}
+                        font_size:50
+                        width: '108sp'
+                        on_release: app.Subject_Right()
+                Label:
+                    id:_current_subject
+                    text: 'INICIO'
+                    markup: True
+
+        #### Barra de herramientas
+        BoxLayout:
+            #spacing: 20
+            #padding: 10
+            size_hint_y: 0.2
+            size_hint_x: 1
+            Button:
+#                text:'Add\nSubject '# \n by Popup'
+#                size_hint: None,None
+#                size:290,300
+                background_normal:'./Images/Add_subject_N.png'
+                background_down:'./Images/Add_subject_P.png'
+                on_release: app.PopUp_Add_tab()
+            Button:
+#                text: 'Delete\nSubject'
+#                size_hint: None,None
+#                size:290,300
+                background_normal:'./Images/Del_subject_N.png'
+                background_down:'./Images/Del_subject_P.png'
+                on_release: app.PopUp_remove_subject_conf()
+#            BoxLayout:
+#                orientation:'vertical'
+#                Button:
+#                    text: 'Info\nInterfaz'
+#                    on_release: app.info_interfaz()
+#                Button:
+#                    text: 'InfoTabs'
+#                    on_release: root.info_tabs()
+            BoxLayout:
+                orientation:'horizontal'
+                ToggleButton:
+                    id:_checkIN
+#                    text: 'Check\nAttendance'
+#                    size_hint: None,None
+#                    size:290,300
+                    background_normal:'./Images/Check_List_N.png'
+                    background_down:'./Images/Check_List_P.png'
+                    on_press: app.Asistencia_global()
+                ToggleButton:
+                    id:_checkOUT
+#                    text: 'Remove\nAttendance'
+#                    size_hint: None,None
+#                    size:290,300
+                    background_normal:'./Images/Del_List_N.png'
+                    background_down:'./Images/Del_List_P.png'
+#                    font_size:13
+                    on_press: app.Borrar_Asistencia_global()
+
+
+            Button:
+                id:_pupil
+#                text: 'PUPIL'
+#                size_hint: None,None
+#                size:290,300
+                background_normal:'./Images/Add_pupil_N.png'
+                background_down:'./Images/Add_pupil_P.png'
+                on_release: app.PopUp_Nombre_Pupil()
+        #### End Barra de Herramientas
+
+        #### Panel de TABS
+        TabbedPanel:
+            id:_Tab
+            do_default_tab: False
+#            tab_height:50
+#            tab_width:200
+#            background_color: (0, 0, 0, 0)
+            TabbedPanelItem:
+                text: '[color=#000000][b]INICIO[/color][/b]'
+                markup: True
+#                border: (30, 30,30, 30)
+#                background_color: (0, 1, 1, 8)
+                background_normal:'./Images/INICIO_N.png'
+                background_down:'./Images/INICIO_P.png'
+                Accordion:
+                    orientation: 'vertical'
+                    AccordionItem:
+                        title: 'Opciones'
+                        Button:
+#                            canvas:
+#                                Ellipse:
+#                                    pos: 10,100
+#                                    size: 100,100
+#                                    source:'Go.png'
+                            size_hint: None,None
+                            border: (-1, -1,-1, -1)
+                            size:150,150
+                            pos_hint:{'x':0,'top':1}
+#                            text: 'Opciones de\nSoftware'
+                            background_normal:'./Images/Settings_N.png'
+                            background_down:'./Images/Settings_P.png'
+                            on_release:app.open_settings()
+
+                    AccordionItem:
+                        title: 'Importar y Exportar'
+                        Button:
+                            disabled: True
+                            size_hint: None,None
+                            border: (-1, -1,-1, -1)
+                            size:150,150
+                            pos_hint:{'x':0,'top':1}
+                            text: 'Importar\nAlumnos\ndel mes anterior'
+                        Button:
+                            size_hint:None,None
+                            border: (-1, -1,-1, -1)
+                            size:150,150
+                            pos_hint:{'x':0,'top':1}
+                            text: 'Crear\nExcel'
+                            on_release: app.Crear_Excel()
+
+                    AccordionItem:
+                        title: 'Horarios'
+                        BoxLayout:
+                            orientation:'vertical'
+                            BoxLayout:
+                                pos_hint:{'x':0,'top':1}
+                                orientation:'vertical'
+                                size_hint_y:0.2
+                                Button:
+                                    text:'Asignar Horario a una Asignatura'
+                                    border: (-1, -1,-1, -1)
+                                    on_release:app.Switch_to_Horario()
+                                GridLayout:
+                                    cols:8
+                                    Label:
+                                        text: 'Asignaturas:'
+                            Carousel:
+                                id:_franjaHoraria
+                                min_move:1
+                                anim_cancel_duration:0
+                                anim_type:'in_quad'
+                                index:1
+                                BoxLayout:
+                                    ScrollView:
+                                        do_scroll_y:True
+                                        do_scroll_x:True
+                                        GridLayout:
+                                            id:_box_Manana
+                                            orientation:'vertical'
+                                            cols:1
+                                            size_hint_y:None
+                                            height: self.minimum_height
+                                BoxLayout:
+                                    ScrollView:
+                                        do_scroll_y:True
+                                        do_scroll_x:True
+                                        GridLayout:
+                                            id:_box_Tardes
+                                            orientation:'vertical'
+                                            cols:1
+                                            size_hint_y:None
+                                            height: self.minimum_height
+                                            spacing:150
+                                            padding:10
+
+                            BoxLayout:
+                                orientation:'horizontal'
+                                size_hint_y:0.1
+                                ToggleButton:
+                                    id:_mananas
+                                    text:'Mañanas'
+                                    on_press: app.Cambiar_franja_HORARIO_tardes()
+                                ToggleButton:
+                                    id:_tardes
+                                    state:'down'
+                                    text:'Tardes'
+                                    on_press: app.Cambiar_franja_HORARIO_mananas()
+
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint_y:0.05
+#            canvas.before:
+#                Color:
+#                    rgb:1,0,0
+            BoxLayout:
+                Label:
+                    id:_contador_asistencia
+                    text:'Contador hoy: 0'
+            BoxLayout:
+                Label:
+                    id:_alumnos_totales
+                    text:'Alumnos Totales: 0'
+
+    #### End

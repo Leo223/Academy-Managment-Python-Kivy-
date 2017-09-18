@@ -1,0 +1,4 @@
+title=Academia_v7
+author=JCP
+
+orientation=<portrait|landscape>

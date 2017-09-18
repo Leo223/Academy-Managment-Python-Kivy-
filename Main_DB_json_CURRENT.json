@@ -1,0 +1,200 @@
+{
+    "February": {
+        "Horarios": {
+            "Fisica": {
+                "Horas": [
+                    "18:00", 
+                    "19:30"
+                ], 
+                "dias": [
+                    "Miercoles", 
+                    "Lunes"
+                ], 
+                "turno": "Tardes"
+            }, 
+            "Dibujo": {
+                "Horas": [
+                    "18:00", 
+                    "19:30"
+                ], 
+                "dias": [
+                    "Miercoles", 
+                    "Lunes"
+                ], 
+                "turno": "Tardes"
+            }, 
+            "Carrera": {
+                "Horas": [
+                    "19:30", 
+                    "21:00"
+                ], 
+                "dias": [
+                    "Miercoles", 
+                    "Lunes"
+                ], 
+                "turno": "Tardes"
+            }
+        }, 
+        "Asignaturas": {
+            "Carrera": {
+                "Adolfo": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "1.5h", 
+                        "13": "1.5h", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Magie": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "13": "2h"
+                    }, 
+                    "Ficha": {
+                        "Pagado": "2h/semana", 
+                        "Dia_Suelto": "Lunes"
+                    }
+                }, 
+                "Aaron": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "1.5h", 
+                        "13": "1.5h", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Raul": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "1.5h", 
+                        "13": "1.5h", 
+                        "15": "X", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Aida": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "1.5h", 
+                        "13": "1.5h", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }
+            }, 
+            "Fisica": {
+                "Enrique": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "13": "1.5h", 
+                        "15": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Ines": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "X", 
+                        "13": "X", 
+                        "15": "1.5h", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Marina": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "8": "X", 
+                        "13": "X", 
+                        "15": "1.5h", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Carmen": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "8": "2h", 
+                        "13": "1h", 
+                        "15": "X"
+                    }, 
+                    "Ficha": {
+                        "Pagado": "1h/semana", 
+                        "Dia_Suelto": "Miercoles"
+                    }
+                }, 
+                "Carlos": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "1.5h", 
+                        "13": "1.5h", 
+                        "15": "X", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }
+            }, 
+            "Dibujo": {
+                "Melerio": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "1.5h", 
+                        "13": "1.5h", 
+                        "15": "1.5h", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Sergio": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1h", 
+                        "8": "1h", 
+                        "13": "1h", 
+                        "15": "X", 
+                        "6": "1h"
+                    }, 
+                    "Ficha": {
+                        "Pagado": "2h/semana", 
+                        "Dia_Suelto": "---"
+                    }
+                }, 
+                "Adrian": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1.5h", 
+                        "8": "1.5h", 
+                        "13": "1.5h", 
+                        "15": "X", 
+                        "6": "1.5h"
+                    }, 
+                    "Ficha": {}
+                }, 
+                "Tomas": {
+                    "Observaciones": {}, 
+                    "Registro de horas": {
+                        "1": "1h", 
+                        "8": "1h", 
+                        "13": "1h", 
+                        "15": "X", 
+                        "6": "1h"
+                    }, 
+                    "Ficha": {
+                        "Pagado": "2h/semana", 
+                        "Dia_Suelto": "---"
+                    }
+                }
+            }
+        }
+    }
+}
